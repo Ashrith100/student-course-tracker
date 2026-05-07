@@ -1,0 +1,37 @@
+@model List<GpaCourse>
+
+<h2>GPA Calculator</h2>
+
+<form method="post" action="/Gpa/Add">
+    <input type="number" name="credits" placeholder="Credits" class="form-control mb-2" />
+
+    <select name="grade" class="form-control mb-2">
+        <option value="4.0">A</option>
+        <option value="3.0">B</option>
+        <option value="2.0">C</option>
+        <option value="1.0">D</option>
+        <option value="0.0">F</option>
+    </select>
+
+    <button class="btn btn-primary">Add</button>
+</form>
+
+@if (Model.Count > 0)
+{
+    <table class="table mt-3">
+        <tr>
+            <th>Credits</th>
+            <th>Grade</th>
+        </tr>
+
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Credits</td>
+                <td>@c.Grade</td>
+            </tr>
+        }
+    </table>
+
+    <h3>GPA: @ViewBag.Gpa.ToString("0.00")</h3>
+}
